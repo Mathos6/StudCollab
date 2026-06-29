@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-
+from .variables import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -9,15 +9,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-#Local
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-gzd(#lhs7eg@r$nx_wfp$n-$ad7yfhpgz(gvlyd_!o(l3$lg+t'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#Local
-DEBUG = True
-
 ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
@@ -78,17 +72,6 @@ WSGI_APPLICATION = 'stucollab.wsgi.application'
 
 #Local
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'stucollab',
-        'USER': 'math',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -127,16 +110,11 @@ STORAGES = {
         "BACKEND":
 "storages.backends.s3boto3.S3Boto3Storage",
         "OPTIONS": {
-            "access_key":
-"OXP4pAEc4CQTY05i8vhP",
-            "secret_key":
-"LM3CnPl4Fcnaqcqj4NOJsg6Nu5cfMCCp2gGb8zJx",
-            "bucket_name":
-"stucollab",
-            "endpoint_url":
-"http://localhost:9000",
-            "region_name":
-"us-east-1",
+            "access_key": STORAGE_ACCESS_KEY,
+            "secret_key": STORAGE_SECRET_KEY,
+            "bucket_name": STORAGE_BUCKET_NAME,
+            "endpoint_url": STORAGE_ENDPOINT_URL,
+            "region_name": STORAGE_DEFAULT_REGION,
             "signature_version":
 "s3v4",
             "use_ssl": False,
@@ -177,7 +155,7 @@ LOGIN_URL = "/me/signin_signup"
 # Mail
 EMAIL_BACKEND = 'anymail.backends.brevo.EmailBackend'
 ANYMAIL = {
-  "BREVO_API_KEY": os.environ.get('BREVO_API_KEY'),
+  "BREVO_API_KEY": BREVO_API_KEY,
 }
 
 DEFAULT_FROM_EMAIL = 'stucollab.app@gmail.com'

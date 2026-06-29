@@ -1,18 +1,13 @@
 import os
 from pathlib import Path
-import dj_database_url
+from .variables import *
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key") 
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = ['*']
 
@@ -70,15 +65,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'stucollab.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-DATABASES = {
-    "default": dj_database_url.config(
-        default=os.getenv("DATABASE_URL")
-    )
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -115,13 +101,13 @@ STORAGES = {
     "default": {
         "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
         "OPTIONS": {
-            "access_key": os.environ.get("AWS_ACCESS_KEY_ID"),
-            "secret_key": os.environ.get("AWS_SECRET_ACCESS_KEY"),
-            "bucket_name": os.environ.get("AWS_STORAGE_BUCKET_NAME"),
-            "endpoint_url": os.environ.get("AWS_S3_ENDPOINT_URL"),
-            "region_name": os.environ.get("AWS_DEFAULT_REGION", "us-east-1"),
+            "access_key": STORAGE_ACCESS_KEY,
+            "secret_key": STORAGE_SECRET_KEY,
+            "bucket_name": STORAGE_BUCKET_NAME,
+            "endpoint_url": STORAGE_ENDPOINT_URL,
+            "region_name": STORAGE_DEFAULT_REGION", "us-east-1"),
             "signature_version": "s3v4",
-            "use_ssl": os.environ.get("AWS_USE_SSL", "True") == "True",
+            "use_ssl": STORAGE_USE_SSL,
             "querystring_auth": True,
         },
     },
@@ -154,8 +140,6 @@ LOGIN_URL = "/me/signin_signup"
 
 # Pour la production
 EMAIL_BACKEND = 'anymail.backends.brevo.EmailBackend'
-ANYMAIL = {
-    "BREVO_API_KEY": os.environ.get('BREVO_API_KEY'),
-}
+
 DEFAULT_FROM_EMAIL = 'stucollab.app@gmail.com'
 SERVER_EMAIL = 'stucollab.app@gmail.com'

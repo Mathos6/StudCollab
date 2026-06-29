@@ -1,4 +1,9 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
 
 if os.getenv("RAILWAY_ENVIRONMENT_NAME"):
   from .settings_prod import *
