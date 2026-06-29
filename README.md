@@ -21,24 +21,48 @@ Ce projet permet aux étudiants de collaborer efficacement en ligne sur des tâc
 
 - **Backend** : Django (Python)
 - **Frontend** : HTML, CSS
-- **Base de données** : SQLite ou PostgreSQL (selon vous)
+- **Base de données** : PostgreSQL
 - **Stockage de fichiers** : Utilisation de stockage local (comme MinIO) ou d’un service cloud (comme AWS S3) pour les fichiers.
 
 ## Installation
 
 1. Clonez le projet sur votre machine locale :
-   `https://github.com/StuCollabo/StudCollab.git`
-2. Installez les dépendances :
-`~pip install -r requirements.txt`
 
-3. Configurez la base de données (PostgreSQL):
-```
-python manage.py migrate
+```bash
+
+git clone https://github.com/Mathos6/StudCollab.git
+
 ```
 
-4. Lancez le serveur de développement :
+2. Déplacez-vous à l'intérieur du projet.
+
+```bash
+
+cd StudCollab
+
 ```
-python manage.py runserver
+
+3. Installez les dépendances python:
+
+```bash
+
+pip install -r requirements.txt
+
+```
+
+4. Migrer les tables vers votre base de données:
+
+```bash
+
+python3 manage.py migrate
+
+```
+
+5. Lancez le serveur de développement :
+```bash
+
+python3 manage.py runserver
+
 ```
 
 
